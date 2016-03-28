@@ -1,0 +1,102 @@
+/*CONtAINER*/
+.container {
+  text-align: center;
+}
+
+/*TABS*/
+#tabs {
+  text-align: center;
+}
+
+/*LEGEND*/
+.legend {opacity: .8;}
+
+/*SCATTERPLOT*/
+    #scatterplot .dot {opacity: .8;}
+    #scatterplot .dot:hover {opacity: 1;}
+
+    #scatterplot .y.axis line, .y.axis path {
+       fill: none;
+       stroke: black;
+       stroke-width: 2;
+    }
+
+    #scatterplot .x.axis line, .x.axis path {
+       fill: none;
+       stroke: black;
+       stroke-width: 2;
+    }
+
+/*BAR CHART*/
+    #barchart .bar1 {fill-opacity: .3; stroke: black; stroke-width: 1;}
+    #barchart .bar1:hover {fill-opacity: 1;}
+
+    #barchart .bar2 {fill-opacity: .6; stroke: black; stroke-width: 1;}
+    #barchart .bar2:hover {fill-opacity: 1;}
+
+    #barchart .bar3 {fill-opacity: .9; stroke: black; stroke-width: 1;}
+    #barchart .bar3:hover {fill-opacity: 1;}
+
+    #barchart .y.axis line, .y.axis path {
+      fill: none;
+      stroke: black;
+      stroke-width: 2;
+    }
+
+    #barchart .x.axis line, .x.axis path {
+      fill: none;
+      stroke: black;
+      stroke-width: 2;
+    }
+
+/*MAP*/
+    #map {
+      width: 1000px;
+      height: 600px;
+    }
+
+    #map .layer {
+      width: 1000px;
+      height: 600px;        
+    }
+
+    #map .layer svg {
+      position: absolute;
+      top: -3980px;
+      left: -4002px;
+      width: 8000px;
+      height: 8000px;        
+    }
+        
+    #map .layer path {
+      fill-opacity: .6;
+    }
+
+/*TOOL TIP*/
+    .d3-tip {
+      font: 12px sans-serif;
+      padding: 12px;
+      background: #EEEEEE;
+      color: black;
+      border-radius: 2px;
+    }
+
+    /* Creates a small triangle extender for the tooltip */
+    .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
+
+    /* Style northward tooltips differently */
+    .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+    }
