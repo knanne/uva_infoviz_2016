@@ -24,7 +24,7 @@
 
     $("d3scatterplot").empty();
 
-    //console.log("SELECTION: " + option_text + " ("+option+")");
+    //console.log("SCATTER SELECTION: " + option_text + " ("+option+")");
 
         var svg = d3.select("d3scatterplot").append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -37,8 +37,8 @@
           .offset([-10, 0])
           .html(function(d) { return "Neighborhood Group: <strong>"+d.neighborhood_group+"</strong>"+"<br>"
                               +"Energy Label: <strong>"+d.energy_label+"</strong>"+"<br>"
-                              +"<i>actual: "+d.actual+"</i><br>"
-                              +"<i>"+option+": "+d[option]+"</i>"; });
+                              +"<i>"+option+": "+d[option]+"</i><br>"
+                              +"<i>actual: "+d.actual+"</i>"; });
 
         svg.call(tip);
 
@@ -63,8 +63,8 @@
           //console.log("SCATTERPLOT SUCCESS");
           //console.log(data);
 
-          x.domain([0, d3.max(data, function(d) { return d[option]; })]);
-          y.domain([0, d3.max(data, function(d) { return d.actual; })]);
+          x.domain([0, d3.max(data, function(d) { return d.actual; })]);
+          y.domain([0, d3.max(data, function(d) { return d[option]; })]);
           //alternative axis method
           //x.domain(d3.extent(data, function(d) { return d[option]; })).nice();
           //y.domain(d3.extent(data, function(d) { return d.actual; })).nice();
@@ -78,7 +78,7 @@
             .attr("x", width)
             .attr("y", -6)
             .style("text-anchor", "end")
-            .text(option_text);
+            .text("Actual Energy Consumption (m2)");
 
           svg.append("g")
             .attr("class", "y axis")
@@ -89,15 +89,15 @@
             .attr("y", 6)
             .attr("dy", ".71em")
             .style("text-anchor", "end")
-            .text("Actual");
+            .text(option_text);
 
           svg.selectAll(".dot")
               .data(data)
               .enter().append("circle")
               .attr("class", "dot")
               .attr("r", 3)
-              .attr("cx", function(d) { return x(d[option]); })
-              .attr("cy", function(d) { return y(d.actual); })
+              .attr("cx", function(d) { return x(d.actual); })
+              .attr("cy", function(d) { return y(d[option]); })
               .style("fill", function(d) { return color(d.energy_label); })
               .on('mouseover', tip.show)
               .on('mouseout', tip.hide);

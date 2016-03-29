@@ -9,41 +9,41 @@
 }
 
 /*LEGEND*/
-.legend {opacity: .8;}
+.legend {padding: 2%; opacity: .8;}
 
 /*SCATTERPLOT*/
-    #scatterplot .dot {opacity: .8;}
+    #analysis .dot {opacity: .8;}
     #scatterplot .dot:hover {opacity: 1;}
 
-    #scatterplot .y.axis line, .y.axis path {
+    #analysis .y.axis line, .y.axis path {
        fill: none;
        stroke: black;
        stroke-width: 2;
     }
 
-    #scatterplot .x.axis line, .x.axis path {
+    #analysis .x.axis line, .x.axis path {
        fill: none;
        stroke: black;
        stroke-width: 2;
     }
 
 /*BAR CHART*/
-    #barchart .bar1 {fill-opacity: .3; stroke: black; stroke-width: 1;}
-    #barchart .bar1:hover {fill-opacity: 1;}
+    #description .bar1 {fill-opacity: .3; stroke: black; stroke-width: 1;}
+    #description .bar1:hover {fill-opacity: 1;}
 
-    #barchart .bar2 {fill-opacity: .6; stroke: black; stroke-width: 1;}
-    #barchart .bar2:hover {fill-opacity: 1;}
+    #description .bar2 {fill-opacity: .6; stroke: black; stroke-width: 1;}
+    #description .bar2:hover {fill-opacity: 1;}
 
-    #barchart .bar3 {fill-opacity: .9; stroke: black; stroke-width: 1;}
-    #barchart .bar3:hover {fill-opacity: 1;}
+    #description .bar3 {fill-opacity: .9; stroke: black; stroke-width: 1;}
+    #description .bar3:hover {fill-opacity: 1;}
 
-    #barchart .y.axis line, .y.axis path {
+    #description .y.axis line, .y.axis path {
       fill: none;
       stroke: black;
       stroke-width: 2;
     }
 
-    #barchart .x.axis line, .x.axis path {
+    #description .x.axis line, .x.axis path {
       fill: none;
       stroke: black;
       stroke-width: 2;

@@ -1,10 +1,17 @@
 !(function (d3) {
 
-  $("map").empty();
+    var option = $("#color_map").val();
+    var option_text = $("#color_map option:selected").text();
 
         var color = d3.scale.linear()
-            .domain([200, 1000, 1300])
             .range(["#4CAF50", "#FFC107", "#FF3D00"]);
+
+    function draw_map(option, option_text) {
+
+        $("#map_legend").empty();
+        $("map").empty();
+
+        console.log("MAP SELECTION: " + option_text + " ("+option+")");
 
         // Create the Google Map…
         var map = new google.maps.Map(d3.select("#map").node(), {
@@ -23,6 +30,42 @@
             
             //build_data = topojson.feature(build, build.objects.bouwjaar);
             build_data = build;
+
+            //make array of option property
+            var optionArray = new Array;
+            for(var o in build_data.features) {
+                optionArray.push(+build_data.features[o].properties[option]);
+            }
+
+            //scale color to option
+            var colormin = Math.min.apply(null, optionArray)
+                colormax = Math.max.apply(null, optionArray);
+            
+            color.domain([colormin, colormin+((colormax-colormin)/2), colormax]);
+
+            console.log(color.domain())
+
+            var legend = d3.select("#map_legend").append("svg")
+                .attr("width", 60 + (100*color.domain().length))
+                .attr("height", 50);
+
+            legend = legend.selectAll(".legend")
+              .data(color.domain())
+              .enter()
+              .append("g")
+              .attr("class", "legend");
+              //.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+            legend.append("rect")
+              .attr("x", function(d,i) { return 50 + (100*i); })
+              .attr("width", 20)
+              .attr("height", 20)
+              .style("fill", function(d) { return color(d); });
+
+            legend.append("text")
+              .attr("x", function(d,i) { return 75 + (100*i); })
+              .attr("y", 15)
+              .text(function(d,i) {return Math.round(color.domain()[i]); });
 
             overlay = new google.maps.OverlayView();
 
@@ -52,7 +95,7 @@
                     .enter()
                         .append("svg:path")
                         .attr("d", path)
-                        .style("fill", function(d) { return color(+d.properties.predicted);})
+                        .style("fill", function(d) { return color(+d.properties[option]);})
                         .style("stroke", "#000000");
                 
             };
@@ -62,10 +105,24 @@
                 var googleCoordinates = new google.maps.LatLng(coordinates[1], coordinates[0]);
                 var pixelCoordinates = projection.fromLatLngToDivPixel(googleCoordinates);
                 return [pixelCoordinates.x + 4000, pixelCoordinates.y + 4000];
+            };
+
+            overlay.setMap(map);
         };
 
-        overlay.setMap(map);
-
     };
+
+    draw_map(option, option_text);
+
+    d3.select("#color_map")
+      .on("change", function() {
+        
+        var option = $("#color_map").val();
+        var option_text = $("#color_map option:selected").text();
+
+        draw_map(option, option_text);
+      });
+
+
 
 })(d3);

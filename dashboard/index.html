@@ -37,7 +37,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a class="description_tab" href="#description" data-toggle="tab">Description</a></li>
                     <li><a class="analysis_tab" href="#analysis" data-toggle="tab">Analysis</a></li>
-                    <li><a class="map_tab" href="#map" data-toggle="tab">Map</a></li>
+                    <li><a class="map_tab" href="#mapping" data-toggle="tab">Map</a></li>
                 </ul>
             </div>
 
@@ -48,10 +48,13 @@
                     <div class="container">
                         <h3>Problem Statement</h3>
                         <p>
-                            Research has shown that there are discrepancies between the expected theoretical and actual energy consompution of households in the Netherlands. This project tool is a demonstration of analysis methods that can be used to explore these discrepencies. All buildings in the Netherlands are given an energy label that is used to identify efficiency. The discrepencies observed are also effected by assigned energy label.
+                            Research has shown that there are discrepancies between the expected theoretical and actual energy consompution of households in the Netherlands. This project is a demonstration of analysis methods that can be used to explore these discrepencies. All buildings in the Netherlands are given an energy label that is used to identify efficiency. The discrepencies observed are also effected by assigned energy label.
                             <br><br>
                             Specifically, data from the municipality of Amsterdam is used to find certain indicators that may be influencing this discrepancy in energy consumption. A simple linear regression was employed to predict an energy consumption value using the data available. This prediction is calculated on the average values for each neighborhood grouping (buurtcombinatie) in Amsterdam.
+                            <br><br>
+                            <strong>The Bar Chart</strong> below emphasizes the discrepency between actual and theoretical values for energy consumption for each energy label. The predicted value calculated is shown averaged across each neighborhood group for that energy label.
                         </p>
+                        <d3barchart></d3barchart>
                     </div>
                 </div>
                 <div id="analysis" class="tab-pane">
@@ -59,10 +62,7 @@
                         <h3>Analysis</h3>
                         <p>
                             <strong>The Scatterplot</strong> visualizes the dependency of each variable on actual energy consumption. Each dot represents the average of buildings within an energy label, for each neighborhood group in Amsterdam. Select a different variable to visualize it on the graph.
-                            <br><br>
-                            <strong>The Bar Chart</strong> emphasizes the discrepency between actual and theoretical values for energy consumption for each energy label. The predicted value calculated is shown averaged across each neighborhood group for that energy label.
                         </p>
-                        <br><br>
                         <div id="dropdowns">
                             <select id="regress">
                                 <option value="predicted" selected>Predicted</option>
@@ -75,42 +75,49 @@
                                 <option value="avg_disp_income_ink">Disposable Income</option>
                             </select>
                         </div>
+                        <br><br>
                         <d3scatterplot></d3scatterplot>
-                        <d3barchart></d3barchart>
                     </div>
                 </div>
                 
-                <!--Google Map Not Formatting Properly-->
-                <div id="map" class="tab-pane">
-
-                <div class="container">
-                    <h3>Amsterdam Map</h3>
-                    <p>
-                        <strong>The Map</strong> below shows neighborhood groups colored by their predicted energy consumption. 
-                    </p>
-                    <br><br>
-                </div>
-
-                </div>
+                
+                <section id="mapping" class="tab-pane">
+                    <div class="container">
+                        <h3>Amsterdam Map</h3>
+                        <p>
+                            <strong>The Map</strong> below shows neighborhood groups colored by the average building value, selected from the dropdown. 
+                        </p>
+                        <div id="dropdowns">
+                            <select id="color_map">
+                                <option value="predicted" selected>Predicted</option>
+                                <option value="avg_building_year">Building Year</option>
+                                <option value="avg_square_meters">Square Meters</option>
+                                <option value="avg_home_occupancy">Home Occupancy</option>
+                                <option value="avg_home_size_rooms">Number of Rooms</option>
+                                <option value="average_property_value">Property Value</option>
+                                <option value="avg_length_residence_years">Length of Stay</option>
+                                <option value="avg_disp_income_ink">Disposable Income</option>
+                            </select>
+                        </div>                        
+                        <div id="map_legend" class="legend"></div>
+                        <!--Google Map Goes Here-->
+                        <div id="map"></div>
+                    </div>
+                </section>  
             </div>
     </div>
 
     <!--Activate Scripts on Tab Click-->
     <script>
-        $.ajaxSetup ({
-            // Disable caching of AJAX responses
-            // Used when debugging
-            cache: false
-        });
+        $.getScript("js/barchart.js");
         
         $(".analysis_tab").click(function() {
             $.getScript("js/scatterplot.js");
-            $.getScript("js/barchart.js");
         });
 
         $(".map_tab").click(function() {
             $.getScript("js/map.js");
-        });
+        })
     </script>
 
   </script>
