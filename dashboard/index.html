@@ -8,21 +8,22 @@
     <!--Import Style Sheet-->
     <link rel='stylesheet' href='css/dashboard.css' type='text/css'></style> 
     <!--Bootstrap CSS-->
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css">
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <!--Import D3-->
     <script type="text/javascript" src="https://d3js.org/d3.v3.js"></script>
     <!--Import D3 queue-->
     <script type="text/javascript" src="https://d3js.org/queue.v1.min.js"></script>
-    <!--Import D3 Tooltip-->
-    <script type="text/javascript" src="js/d3tip.js"></script>
     <!--Import jQuery-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-latest.js"></script>
     <!--Import Bootstrap Javascript-->
-    <script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">></script>
     <!--Import D3 topoJSON-->
     <script type="text/javascript" src="https://d3js.org/topojson.v1.min.js"></script>
     <!--Import GOOGLE Maps-->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!--Import D3 Tooltip CREDIT ELSEWHERE (Copyright (c) 2013 Justin Palmer)-->
+    <script type="text/javascript" src="js/d3tip.js"></script>
 
   </head>
   <body>
@@ -52,7 +53,7 @@
                             <br><br>
                             Specifically, data from the municipality of Amsterdam is used to find certain indicators that may be influencing this discrepancy in energy consumption. A simple linear regression was employed to predict an energy consumption value using the data available. This prediction is calculated on the average values for each neighborhood grouping (buurtcombinatie) in Amsterdam.
                             <br><br>
-                            <strong>The Bar Chart</strong> below emphasizes the discrepency between actual and theoretical values for energy consumption for each energy label. The predicted value calculated is shown averaged across each neighborhood group for that energy label.
+                            <strong>The Bar Chart</strong> below emphasizes the discrepency between actual and theoretical values for energy consumption for each energy label. The predicted value calculated is shown averaged across each neighborhood group for that energy label. Our new predicted value helps combat the discrepency described above, by considering important influential factors of energy consumption.
                         </p>
                         <d3barchart></d3barchart>
                     </div>
@@ -108,10 +109,11 @@
             
             <footer>
                 <div id="foot" class="container">
-                    <p><i>the aggregation of data in this report may cause misrepresentation of some figures<br>this tool should be seen as a demonstration of capabilities</i></p>
-                    <br>
-                    <p><b>Authors</b></p>
-                    <p>Kain Nanne</p>
+                    <p class="text-muted">
+                        <i>the aggregation of data in this report may cause misrepresentation of some figures<br>this tool is a demonstration prototype</i>
+                    </p>
+                    <p>2016</p>
+                    <p><b>Author</b><br>Kain Nanne</p>
                     <p><a href="https://github.com/knanne/uva_infoviz_2016">Code</a></p>
                 </div>
             </footer>
